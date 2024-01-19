@@ -58,7 +58,7 @@ public class DriverManagerHelper {
         Configuration.pageLoadTimeout = 120_000;
         setConfiguration(testName);
 
-        open("https://www.google.com/");
+        open("https://www.saucedemo.com/");
         WebDriverRunner.getWebDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
         WebDriverRunner.getWebDriver().manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
     }
