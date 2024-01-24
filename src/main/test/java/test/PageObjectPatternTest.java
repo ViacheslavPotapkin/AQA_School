@@ -6,8 +6,6 @@ import org.testng.annotations.Test;
 import page.LoginPage;
 import page.ProductsPage;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Selenide.open;
 
 public class PageObjectPatternTest extends BaseTest {
