@@ -31,6 +31,7 @@ public class DriverManagerHelper {
 
     private static void initDriver(String testName) {
         LOG.info("### starting driver...");
+
         configSelenide(testName);
         var proxy = configProxy();
         proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT);
@@ -67,30 +68,28 @@ public class DriverManagerHelper {
     public static void setConfiguration(String testName) {
         Configuration.remote = "http://localhost:4444/wd/hub";
         Configuration.headless = false;
-
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.screenshots = true;
         Configuration.savePageSource = true;
         Configuration.reportsFolder = "test-result/reports";
         Configuration.timeout = 4000;
-        Configuration.browserCapabilities = capabilities(testName, true);
+        Configuration.browserCapabilities = capabilities(testName);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
     }
 
 
-    public static DesiredCapabilities capabilities(String testName, boolean withVideo) {
+    public static DesiredCapabilities capabilities(String testName) {
         var capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("sessionTimeout", "2m");
         var options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-
         capabilities.setCapability("goog:chromeOptions", options);
-        capabilities.setCapability("enableVideo", false);
-        if (withVideo)
-            capabilities.setCapability("videoName", testName + ".mp4");
 
+        // Selenoid
+        capabilities.setCapability("enableVideo", true);
+        capabilities.setCapability("videoName", testName + ".mp4");
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("sessionTimeout", "2m");
         capabilities.setCapability("timeZone", "Europe/Kiev");
         return capabilities;
     }

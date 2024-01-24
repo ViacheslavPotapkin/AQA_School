@@ -4,3 +4,4 @@
 /.idea/
 /test-output/
 /test-result/
+/devenv/selenoid/.aerokube/selenoid/video/

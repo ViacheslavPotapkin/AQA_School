@@ -8,17 +8,17 @@ import lombok.experimental.Accessors;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.$;
 
 @Getter
 @Accessors(fluent = true)
 @NoArgsConstructor
 public class LoginPage {
 
-    private final SelenideElement loginField = $x("#user-name");
-    private final SelenideElement passwordField = $x("#password");
-    private final SelenideElement loginButton = $x("#login-button");
-    private final SelenideElement errorMessage = $x(".error-message-container");
+    private final SelenideElement loginField = $("#user-name");
+    private final SelenideElement passwordField = $("#password");
+    private final SelenideElement loginButton = $("#login-button");
+    private final SelenideElement errorMessage = $(".error-message-container");
 
     public void setLogin(String login) {
         loginField.setValue(login);

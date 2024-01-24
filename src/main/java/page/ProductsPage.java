@@ -12,5 +12,5 @@ import static com.codeborne.selenide.Selenide.$$x;
 @NoArgsConstructor
 public class ProductsPage {
 
-    private final ElementsCollection productList = $$x(".inventory_list");
+    private final ElementsCollection productList = $$x("//div[@class='inventory_container']/div/div");
 }

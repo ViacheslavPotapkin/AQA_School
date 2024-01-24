@@ -2,14 +2,13 @@ package test;
 
 import base.BaseTest;
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import org.testng.annotations.Test;
 import page.LoginPage;
 import page.ProductsPage;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
 public class PageObjectPatternTest extends BaseTest {
 
@@ -21,8 +20,7 @@ public class PageObjectPatternTest extends BaseTest {
         loginPage.setLogin("standard_user");
         loginPage.setPassword("secret_sauce");
         loginPage.clickLoginButton();
-        productsPage.productList().shouldHave(CollectionCondition.size(6), Duration.ofSeconds(8));
-        sleep(6000);
+        productsPage.productList().shouldHave(CollectionCondition.size(6));
     }
 
     @Test
@@ -32,6 +30,5 @@ public class PageObjectPatternTest extends BaseTest {
         loginPage.setPassword("secret_sauce");
         loginPage.clickLoginButton();
         loginPage.checkErrorMessageAfterInvalidLogin();
-        sleep(6000);
     }
 }
