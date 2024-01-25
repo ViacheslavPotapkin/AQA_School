@@ -11,7 +11,7 @@ public class AntiPatternTest extends BaseTest {
     @Test
     public void validLoginTest() {
         open();
-        $("#user-name").setValue("standard_user");
+        $("#user-name1").setValue("standard_user");
         $("#password").setValue("secret_sauce");
         $("#login-button").click();
         $("#inventory_container").shouldBe(Condition.visible);

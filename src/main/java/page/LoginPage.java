@@ -2,37 +2,39 @@ package page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Selenide.$;
 
-@Getter
 @Accessors(fluent = true)
 @NoArgsConstructor
 public class LoginPage {
 
-    private final SelenideElement loginField = $("#user-name");
+    private final SelenideElement userNameField = $("#user-name");
     private final SelenideElement passwordField = $("#password");
     private final SelenideElement loginButton = $("#login-button");
     private final SelenideElement errorMessage = $(".error-message-container");
 
-    public void setLogin(String login) {
-        loginField.setValue(login);
+    public LoginPage setLogin(String username) {
+        userNameField.setValue(username);
+        return this;
     }
 
-    public void setPassword(String password) {
+    public LoginPage setPassword(String password) {
         passwordField.setValue(password);
+        return this;
     }
 
-    public void clickLoginButton() {
+    public LoginPage clickLoginButton() {
         loginButton.click();
+        return this;
     }
 
-    public void checkErrorMessageAfterInvalidLogin() {
-        errorMessage.shouldBe(Condition.visible, Duration.ofSeconds(8));
+    public LoginPage checkErrorMessage() {
+        errorMessage.shouldBe(Condition.visible);
+        return this;
     }
+
+
 }
