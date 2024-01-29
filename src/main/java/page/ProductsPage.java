@@ -2,7 +2,7 @@ package page;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
-import lombok.Getter;
+import io.qameta.allure.Step;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
@@ -14,7 +14,8 @@ public class ProductsPage {
 
     private final ElementsCollection productList = $$x("//div[@class='inventory_container']/div/div");
 
-    public void checkProductList(){
-        productList.shouldHave(CollectionCondition.size(6));
+    @Step("Check product list")
+    public void checkProductList(int expectedSize) {
+        productList.shouldHave(CollectionCondition.size(expectedSize));
     }
 }

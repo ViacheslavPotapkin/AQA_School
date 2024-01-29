@@ -5,3 +5,5 @@
 /test-output/
 /test-result/
 /devenv/selenoid/.aerokube/selenoid/video/
+/.allure/allure-2.21.0/
+/.allure/allure-2.25.0/
