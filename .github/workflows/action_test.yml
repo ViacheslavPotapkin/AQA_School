@@ -23,7 +23,7 @@ jobs:
       - name: Set-env
         run: |
           echo "env = ${{ secrets.TEST_TEXT }}" >> $GITHUB_ENV
-          echo "envTest = some_text" >> $GITHUB_ENV
+          echo "envTest = 'some_text'" >> $GITHUB_ENV
 
       - name: print env
         run: |
