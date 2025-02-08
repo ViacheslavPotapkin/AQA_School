@@ -3,11 +3,11 @@ name: Run tests
 on:
   push:
     branches:
-      - main
+      - master
 
   pull_request:
     branches:
-      [ main, stage ]
+      [ master, stage ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
