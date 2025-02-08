@@ -15,6 +15,9 @@ concurrency:
 
 jobs:
   deploy:
+    strategy:
+      matrix:
+        deploy_number: [1, 2]  # Два окремі деплої
     runs-on: ubuntu-latest
 
     steps:
@@ -22,32 +25,10 @@ jobs:
 
       - name: Set env
         run: |
+          echo "DEPLOY_NUMBER=${{ matrix.deploy_number }}" >> $GITHUB_ENV
           echo "env=${{ github.workflow }}-${{ github.ref }}" >> $GITHUB_ENV
 
-      - name: Set-env output
-        id: set-env-output
-        run: echo "env=some text" >> $GITHUB_OUTPUT
-
-      - name: print env
+      - name: Print env
         run: |
-          echo "env after print: ${{ env }}"
-          echo "envTest after print: ${{ steps.set-env-output.outputs.env }}"
-
-  deploy2:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set env
-        run: |
-          echo "env=${{ github.workflow }}-${{ github.ref }}" >> $GITHUB_ENV
-
-      - name: Set-env output
-        id: set-env-output
-        run: echo "env=some text" >> $GITHUB_OUTPUT
-
-      - name: print env
-        run: |
-          echo "env after print: ${{ env }}"
-          echo "envTest after print: ${{ steps.set-env-output.outputs.env }}"        
+          echo "Running deploy number: $DEPLOY_NUMBER"
+          echo "env after print: $env"
