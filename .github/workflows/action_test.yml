@@ -22,8 +22,10 @@ jobs:
 
       - name: Set-env
         run: |
-          echo "env =${{ secrets.TEST_TEXT }}" >> $GITHUB_ENV
+          echo "env = ${{ secrets.TEST_TEXT }}" >> $GITHUB_ENV
+          echo "envTest = some_text" >> $GITHUB_ENV
 
       - name: print env
         run: |
-          echo ${{ steps.set-env.outputs.env }}
+          echo "env after print: ${{ steps.set-env.outputs.env }}"
+          echo "envTest after print: ${{ steps.set-env.outputs.envTest }}"
