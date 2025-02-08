@@ -20,5 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: deploy
-        run: echo "Deploying to production"
+      - name: Set env
+        id: set-env
+        run: |
+          echo "${{ github.ref }}" >> $GITHUB_ENV
+
+      - name: print env
+        run: |
+          echo ${{ steps.set-env.outputs.set-env }}
