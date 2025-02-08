@@ -15,20 +15,18 @@ concurrency:
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        deploy_number: [1, 2]  # Два окремі деплої
-    runs-on: ubuntu-latest
-
+        number: [ 1, 2, 3 ]
     steps:
       - uses: actions/checkout@v2
 
       - name: Set env
         run: |
-          echo "DEPLOY_NUMBER=${{ matrix.deploy_number }}" >> $GITHUB_ENV
-          echo "env=${{ github.workflow }}-${{ github.ref }}" >> $GITHUB_ENV
+          echo "DEPLOY_NUMBER=${{ matrix.number }}" >> $GITHUB_ENV
 
       - name: Print env
         run: |
-          echo "Running deploy number: $DEPLOY_NUMBER"
-          echo "env after print: $env"
+          echo "Deploying version $DEPLOY_NUMBER"    
+          
