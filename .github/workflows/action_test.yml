@@ -28,4 +28,4 @@ jobs:
       - name: print env
         run: |
           echo "env after print: ${{ steps.set-env.outputs.env }}"
-          echo "envTest after print: ${{ steps.set-env.outputs.envTest }}"
+          echo "envTest after print: ${{ envTest }}"
