@@ -18,13 +18,22 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        number: [ 1, 2, 3 ]
+        include:
+          - project: web-um-api
+            project_directory: um-api
+
+          - project: web-mm-api
+            project_directory: mm-api
+
+          - project: blog-api
+            project_directory: blog-api
+
     steps:
       - uses: actions/checkout@v2
 
       - name: Set env
         run: |
-          echo "DEPLOY_NUMBER=${{ matrix.number }}" >> $GITHUB_ENV
+          echo "DEPLOY_NUMBER=${{ matrix.project_directory }}" >> $GITHUB_ENV
 
       - name: Print env
         run: |
