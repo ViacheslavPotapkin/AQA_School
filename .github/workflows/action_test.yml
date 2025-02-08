@@ -20,12 +20,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set-env
+      - name: Set env
         run: |
-          echo "env = ${{ secrets.TEST_TEXT }}" >> $GITHUB_ENV
-          echo "envTest = 'some_text'" >> $GITHUB_ENV
+          echo "env=${{ github.workflow }}-${{ github.ref }}" >> $GITHUB_ENV
+
+      - name: Set-env output
+        id: set-env-output
+        run: echo "env=some text" >> $GITHUB_OUTPUT
 
       - name: print env
         run: |
-          echo "env after print: ${{ steps.set-env.outputs.env }}"
-          echo "envTest after print: ${{ envTest }}"
+          echo "env after print: ${{ env }}"
+          echo "envTest after print: ${{ steps.set-env-output.outputs.env }}"
